@@ -1,0 +1,589 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "customers",
+  "display_name": "Customers / clients",
+  "description": "Customers / clients",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/customers",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "group_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by group_id. You can add multiple group ids separate by comma l"
+        },
+        "additional_group_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by additional_group_id. You can add multiple group ids separate"
+        },
+        "number": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by number. You can add multiple numbers separate by comma like "
+        },
+        "country": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by country. You can add multiple countries separate by comma li"
+        },
+        "zip_code": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by zip_code. You can add multiple zip codes separate by comma l"
+        },
+        "emails": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by emails. You can add multiple emails separate by comma like m"
+        },
+        "first_name": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by first_name. You can add multiple names separate by comma lik"
+        },
+        "last_name": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by first_name. You can add multiple names separate by comma lik"
+        },
+        "company_name": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter customers by first_name. You can add multiple names separate by comma lik"
+        },
+        "created_at": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "gte",
+            "lte"
+          ],
+          "description": "Filter customers by created_at. You can filter one date with created_at=2014-12-"
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "acquire_options": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "1 = Empfehlung eines anderen Kunden, 2 = Zeitungsanzeige, 3 = Eigene Akquisition, 4 = Mitarbeiter Akquisition, 5 = Googl"
+                  },
+                  "additional_groups_ids": {
+                    "type": "array",
+                    "native_type": "array",
+                    "arrow_type": "Json"
+                  },
+                  "bank_account": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "bank_account_owner": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "bank_bic": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "bank_code": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "bank_iban": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "bank_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "birth_date": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "cash_allowance": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64"
+                  },
+                  "cash_allowance_days": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64"
+                  },
+                  "cash_discount": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64"
+                  },
+                  "cash_discount_type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "city": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "state": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "company_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "country": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "native_type": "string:datetime",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "delivery_title": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_city": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_state": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_company_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_country": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_first_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_last_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_personal": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean"
+                  },
+                  "delivery_salutation": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "0 = nothing, 1 = Mr, 2 = Mrs, 3 = Company, 4 = Mr & Mrs, 5 = Married couple, 6 = Family"
+                  },
+                  "delivery_street": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_suffix_1": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_suffix_2": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "delivery_zip_code": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "emails": {
+                    "type": "array",
+                    "native_type": "array",
+                    "arrow_type": "Json"
+                  },
+                  "fax": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "first_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "grace_period": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "will be replaced by its alias due_in_days."
+                  },
+                  "due_in_days": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "due date in days"
+                  },
+                  "group_id": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "info_1": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "info_2": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "internet": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "last_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "mobile": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "note": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Automatically generated if empty/omitted and when no type in query is provided or the type 'CUSTOMER', 'CUSTOMER,SUPPLIE"
+                  },
+                  "supplier_number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Automatically generated if the type SUPPLIER or 'CUSTOMER,SUPPLIER' is provided as query parameter and the field supplie"
+                  },
+                  "payment_options": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "1 = Stets p\u00fcnktliche Zahlung, 2 = \u00fcberwiegend p\u00fcnktliche Zahlung, 3 = \u00fcberwiegend versp\u00e4tete Zahlung, 5 = Grunds\u00e4tzlich "
+                  },
+                  "personal": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean"
+                  },
+                  "phone_1": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "phone_2": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "postbox": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "postbox_city": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "postbox_state": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "postbox_country": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "postbox_zip_code": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "sale_price_level": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "salutation": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "0 = nothing, 1 = Mr, 2 = Mrs, 3 = Company, 4 = Mr & Mrs, 5 = Married couple, 6 = Family"
+                  },
+                  "sepa_agreement": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "BASIC = SEPA-Basislastschrift, COR1 = SEPA-Basislastschrift COR1 (deprecated use BASIC instead), COMPANY = SEPA-Firmenla"
+                  },
+                  "sepa_agreement_date": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "sepa_mandate_reference": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "since_date": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "street": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "suffix_1": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "suffix_2": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "tax_number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "court": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "court_registry_number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "tax_options": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "nStb = Nicht steuerbar (Drittland), nStbUstID = Nicht steuerbar (EU mit USt-IdNr.), nStbNoneUstID = Nicht steuerbar (EU "
+                  },
+                  "title": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "archived": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean"
+                  },
+                  "vat_identifier": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "zip_code": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "document_pdf_type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Type of PDF to use when sending a Document to the Customer."
+                  },
+                  "buyer_reference": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Used as \"buyerReference\" in ZUGFeRD and as \"Leitweg-ID\" in the XRechnung format."
+                  },
+                  "foreign_supplier_number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "The ID given to your company by the customer in his system."
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

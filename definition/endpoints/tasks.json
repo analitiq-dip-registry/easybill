@@ -1,0 +1,174 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "tasks",
+  "display_name": "Tasks",
+  "description": "Tasks",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/tasks",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "category": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "category_custom": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "The name of your custom category. Can only have a value if \"category\" is \"CUSTOM\"."
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "customer_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "description": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "document_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "end_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)",
+                    "description": "The deadline"
+                  },
+                  "finish_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)",
+                    "description": "The time when the task was marked as done"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64",
+                    "description": "When omitted or null, the currently active login is used"
+                  },
+                  "name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "position_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "priority": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "project_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "start_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "status": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "status_percent": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

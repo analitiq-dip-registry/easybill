@@ -1,0 +1,290 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "positions",
+  "display_name": "Positions (products / articles)",
+  "description": "Positions (products / articles)",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/positions",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "type": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter positions by type."
+        },
+        "number": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter positions by number. You can add multiple numbers separate by comma like "
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "description": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "The positions name or description"
+                  },
+                  "document_note": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "This field can be used in the document text areas with the liquid placeholder {{document.item_notes}}. Every note is onl"
+                  },
+                  "note": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Note for internal use"
+                  },
+                  "unit": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "export_identifier": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "The FAS-Account is the four-digit revenue account, in which the revenue will be entered when doing the export to your ta"
+                  },
+                  "export_identifier_extended": {
+                    "type": "object",
+                    "native_type": "object",
+                    "arrow_type": "Json"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "price_type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "vat_percent": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64"
+                  },
+                  "sale_price": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price2": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 2 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price3": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 3 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price4": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 4 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price5": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 5 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price6": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 6 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price7": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 7 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price8": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 8 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price9": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 9 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "sale_price10": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price for customers of group 10 in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "cost_price": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Price in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "export_cost1": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "export_cost2": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "group_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "stock": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Activates stock management for this position"
+                  },
+                  "stock_count": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "Current stock count"
+                  },
+                  "stock_limit_notify": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean",
+                    "description": "Notify when stock_count is lower than stock_limit"
+                  },
+                  "stock_limit_notify_frequency": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Notify frequency when stock_count is lower than stock_limit (ALWAYS, ONCE)"
+                  },
+                  "stock_limit": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64"
+                  },
+                  "quantity": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Used as the default quantity when adding this position to a document"
+                  },
+                  "archived": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

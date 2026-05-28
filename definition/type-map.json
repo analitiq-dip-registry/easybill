@@ -1,0 +1,14 @@
+[
+  { "match": "exact", "native": "string", "canonical": "Utf8" },
+  { "match": "exact", "native": "string:date", "canonical": "Date32" },
+  { "match": "exact", "native": "string:date-time", "canonical": "Timestamp(MICROSECOND, UTC)" },
+  { "match": "exact", "native": "string:datetime", "canonical": "Timestamp(MICROSECOND, UTC)" },
+  { "match": "exact", "native": "integer", "canonical": "Int64" },
+  { "match": "exact", "native": "integer:int64", "canonical": "Int64" },
+  { "match": "exact", "native": "integer:int6", "canonical": "Int64" },
+  { "match": "exact", "native": "integer:int32", "canonical": "Int32" },
+  { "match": "exact", "native": "number:float", "canonical": "Float64" },
+  { "match": "exact", "native": "boolean", "canonical": "Boolean" },
+  { "match": "exact", "native": "object", "canonical": "Json" },
+  { "match": "exact", "native": "array", "canonical": "Json" }
+]

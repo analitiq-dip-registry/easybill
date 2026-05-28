@@ -1,0 +1,174 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "projects",
+  "display_name": "Projects",
+  "description": "Projects",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/projects",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "customer_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter projects by customer_id. You can add multiple ids separate by comma like "
+        },
+        "status": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter projects by status."
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "budget_amount": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "Project budget in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "budget_time": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "Time budget in minutes (e.g. \"90\" = 1 hour and 30 minutes)"
+                  },
+                  "customer_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "hourly_rate": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Hourly rate in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64",
+                    "description": "If omitted or null, the currently active login is used"
+                  },
+                  "name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "note": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "status": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "due_at": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "budget_notify_frequency": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "consumed_time": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64"
+                  },
+                  "consumed_amount": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

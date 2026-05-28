@@ -1,0 +1,196 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "time-trackings",
+  "display_name": "Time-tracking entries",
+  "description": "Time-tracking entries",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/time-trackings",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "login_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter time-tracking by login_id. You can add multiple ids separate by comma lik"
+        },
+        "project_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter time-tracking by project_id. You can add multiple ids separate by comma l"
+        },
+        "date_from_at": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "gte",
+            "lte"
+          ],
+          "description": "Filter time-tracking by date_from_at. You can filter one date with date_from_at="
+        },
+        "date_thru_at": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "gte",
+            "lte"
+          ],
+          "description": "Filter time-tracking by date_thru_at. You can filter one date with date_thru_at="
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "cleared_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "date_from_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "date_thru_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "description": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "hourly_rate": {
+                    "type": "number",
+                    "native_type": "number:float",
+                    "arrow_type": "Float64",
+                    "description": "Hourly rate in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "note": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Can be chosen freely"
+                  },
+                  "position_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "project_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64",
+                    "description": "If omitted or null, the currently active login is used."
+                  },
+                  "timer_value": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "Tracked time in minutes"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
