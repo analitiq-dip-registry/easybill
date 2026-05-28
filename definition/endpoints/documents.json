@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
   "endpoint_id": "documents",
-  "display_name": "Invoices",
+  "display_name": "Documents",
   "description": "Invoices, offers, credit notes and other documents",
   "operations": {
     "read": {

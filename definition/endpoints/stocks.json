@@ -1,8 +1,8 @@
 {
   "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
   "endpoint_id": "stocks",
-  "display_name": "Stock / inventory movements",
-  "description": "Stock / inventory movements",
+  "display_name": "Stock entries",
+  "description": "Stock entries (per-position stock movements)",
   "operations": {
     "read": {
       "request": {

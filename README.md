@@ -63,7 +63,7 @@ All endpoints are read-only (`GET`) collections and are paginated (page-number s
 | `discounts-position-group` | GET | Position-group discounts |
 | `sepa-payments` | GET | SEPA direct-debit payments |
 | `serial-numbers` | GET | Serial numbers |
-| `stocks` | GET | Stock / inventory levels |
+| `stocks` | GET | Stock entries (per-position stock movements) |
 | `tasks` | GET | Tasks |
 | `text-templates` | GET | Reusable text templates |
 | `time-trackings` | GET | Time-tracking entries |
