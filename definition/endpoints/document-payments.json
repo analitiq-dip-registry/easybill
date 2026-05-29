@@ -1,0 +1,166 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "document-payments",
+  "display_name": "Payments recorded against documents",
+  "description": "Payments recorded against documents",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/document-payments",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "document_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter payments by document_id. You can add multiple ids separate by comma like "
+        },
+        "payment_at": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "gte",
+            "lte"
+          ],
+          "description": "Filter payments by payment_at. You can filter one date with payment_at=2014-12-1"
+        },
+        "reference": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter payments by reference. You can add multiple references separate by comma "
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "native_type": "integer:int32",
+                    "arrow_type": "Int32"
+                  },
+                  "document_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "is_overdue_fee": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "notice": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "payment_at": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "provider": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "reference": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

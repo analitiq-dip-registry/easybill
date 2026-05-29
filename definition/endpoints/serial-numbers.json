@@ -1,0 +1,149 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "serial-numbers",
+  "display_name": "Serial numbers",
+  "description": "Serial numbers",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/serial-numbers",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "position_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter serial numbers by position id."
+        },
+        "document_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter serial numbers by document id."
+        },
+        "in_use": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq"
+          ],
+          "description": "Filter serial numbers by usage."
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "serial_number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "position_id": {
+                    "type": "integer",
+                    "native_type": "integer:int6",
+                    "arrow_type": "Int64"
+                  },
+                  "document_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "document_position_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "used_at": {
+                    "type": "string",
+                    "native_type": "string:datetime",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "native_type": "string:datetime",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

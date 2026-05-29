@@ -1,0 +1,106 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "text-templates",
+  "display_name": "Reusable text templates",
+  "description": "Reusable text templates",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/text-templates",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "can_modify": {
+                    "type": "boolean",
+                    "native_type": "boolean",
+                    "arrow_type": "Boolean",
+                    "description": "Deprecated, field is always true."
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "text": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "title": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

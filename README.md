@@ -1,10 +1,10 @@
-# REPLACE_CONNECTOR_NAME
+# EasyBill
 
-REPLACE with a short description of what this connector does and what system it integrates with.
+Read invoicing and accounting data from [easybill](https://www.easybill.de) — documents (invoices, offers, credit notes), customers, positions, payments, projects and more — via the easybill REST API.
 
 ## What is this?
 
-This is a **connector** — a configuration that defines how to authenticate with REPLACE_SYSTEM_NAME and what data endpoints are available for reading and writing. It does not move data by itself. Instead, it is used by the [Analitiq](https://analitiq-app.com) data integration platform or the open-source `analitiq-dip-registry` engine to set up data pipelines.
+This is a **connector** — a configuration that defines how to authenticate with easybill and what data endpoints are available for reading and writing. It does not move data by itself. Instead, it is used by the [Analitiq](https://analitiq-app.com) data integration platform or the open-source `analitiq-dip-registry` engine to set up data pipelines.
 
 ## How to use this connector
 
@@ -27,39 +27,53 @@ The `analitiq-plugin-dataflow` plugin will automatically fetch the required conn
 
 ## Prerequisites
 
-REPLACE with what the user needs before they can connect. Be specific:
-
-- e.g., "A registered OAuth2 application with client ID and client secret"
-- e.g., "An API key generated from your account settings"
-- e.g., "Admin access to your organisation's account"
+- An easybill account on a plan that includes API access (the **PLUS** or **BUSINESS** tier).
+- An easybill REST API key generated from your account settings.
 
 ## Authentication
 
-REPLACE with a plain-language explanation of how to authenticate. If the system supports multiple authentication methods, explain when to use each one.
+This connector authenticates with a single **API key**, sent as a bearer token in the `Authorization: Bearer <api_key>` header on every request. No OAuth flow, client app, or post-authentication setup is required.
+
+(easybill also accepts HTTP Basic Auth using your email and API key, but this connector uses the simpler bearer-token form.)
 
 ### How to get your credentials
 
-REPLACE with step-by-step instructions:
-
-1. e.g., "Log in to your account at https://app.example.com"
-2. e.g., "Navigate to Settings > API Keys"
-3. e.g., "Click 'Generate New Key' and copy the key"
+1. Log in to your account at [easybill.de](https://www.easybill.de).
+2. Open **Settings → API** (German: *Einstellungen → API*).
+3. Generate an API key and copy it.
+4. Paste it into the connector's **API Key** field when prompted.
 
 ## Available Endpoints
 
 The table below lists all data endpoints defined by this connector. Each endpoint represents a resource you can read from or write to.
 
+All endpoints are read-only (`GET`) collections and are paginated (page-number style, up to 1000 records per page).
+
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-|          |        |             |
+| `documents` | GET | Invoices, offers, credit notes and other documents (supports incremental sync on `edited_at`) |
+| `customers` | GET | Customers / clients |
+| `customer-groups` | GET | Customer groups |
+| `positions` | GET | Positions (products / articles) |
+| `position-groups` | GET | Position groups |
+| `projects` | GET | Projects |
+| `document-payments` | GET | Payments recorded against documents |
+| `attachments` | GET | File attachments |
+| `discounts-position` | GET | Position discounts |
+| `discounts-position-group` | GET | Position-group discounts |
+| `sepa-payments` | GET | SEPA direct-debit payments |
+| `serial-numbers` | GET | Serial numbers |
+| `stocks` | GET | Stock entries (per-position stock movements) |
+| `tasks` | GET | Tasks |
+| `text-templates` | GET | Reusable text templates |
+| `time-trackings` | GET | Time-tracking entries |
 
 ## Limitations
 
-REPLACE with any important limitations users should know about:
-
-- **Rate limits** — e.g., "The API allows 60 requests per minute"
-- **Data freshness** — e.g., "Data may be delayed by up to 15 minutes"
-- **Sandbox vs Production** — e.g., "Sandbox and production use different API keys"
+- **Rate limits** — easybill enforces a per-plan request limit: **PLUS** allows 10 requests/minute, **BUSINESS** allows 60 requests/minute. Exceeding it returns `429 Too Many Requests`. This connector throttles to the conservative floor of **10 requests/minute** so it works on every plan; raise it if your account is on the BUSINESS tier.
+- **Result size** — list responses return 100 records per page by default; this connector requests the maximum of 1000 per page.
+- **Incremental sync** — only the `documents` endpoint exposes a true last-modified filter (`edited_at`) and supports incremental replication. All other endpoints are full-refresh only.
+- **Dates & timezone** — easybill emits dates in the `Europe/Berlin` timezone (`date` as `Y-m-d`, `date-time` as `Y-m-d H:i:s`). Some date fields may be `null` for older records.
 
 ## For AI agents
 
@@ -87,7 +101,7 @@ All connectors in this registry are community-maintained and live at [github.com
 
 ## Links
 
-- [API Documentation](REPLACE with URL)
+- [API Documentation](https://www.easybill.de/api)
 - [Analitiq Cloud](https://analitiq-app.com)
 - [Analitiq Engine (open source)](https://github.com/analitiq-ai/analitiq-engine)
 - [Analitiq DIP Registry (open source)](https://github.com/analitiq-dip-registry)

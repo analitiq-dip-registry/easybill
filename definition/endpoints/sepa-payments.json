@@ -1,0 +1,229 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "sepa-payments",
+  "display_name": "SEPA direct-debit payments",
+  "description": "SEPA direct-debit payments",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/sepa-payments",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        },
+        "document_id": {
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "operators": [
+            "eq",
+            "in"
+          ],
+          "description": "Filter SEPA payment by document_id. You can add multiple ids separate by comma l"
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "integer",
+                    "native_type": "integer",
+                    "arrow_type": "Int64",
+                    "description": "Amount in cents (e.g. \"150\" = 1.50\u20ac)"
+                  },
+                  "created_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "creditor_bic": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "If type is DEBIT, this field is overwritten with the selected bank account data on export."
+                  },
+                  "creditor_iban": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Mandatory if type is CREDIT. If type is DEBIT, this field is overwritten with the selected bank account data on export."
+                  },
+                  "creditor_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Mandatory if type is CREDIT. If type is DEBIT, this field is overwritten with the selected bank account data on export."
+                  },
+                  "debitor_bic": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "If type is CREDIT, this field is overwritten with the selected bank account data on export."
+                  },
+                  "debitor_iban": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Mandatory if type is DEBIT. If type is CREDIT, this field is overwritten with the selected bank account data on export."
+                  },
+                  "debitor_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Mandatory if type is DEBIT. If type is CREDIT, this field is overwritten with the selected bank account data on export."
+                  },
+                  "debitor_address_line_1": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Mandatory if type is DEBIT and the debitor's IBAN belongs to a country outside the EEA"
+                  },
+                  "debitor_address_line2": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "string"
+                  },
+                  "debitor_country": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "Mandatory if type is DEBIT and the debitor's IBAN belongs to a country outside the EEA"
+                  },
+                  "document_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "export_at": {
+                    "type": "string",
+                    "native_type": "string:date-time",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)",
+                    "description": "If a date is set, this record is marked as exported"
+                  },
+                  "export_error": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "local_instrument": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "CORE: SEPA Core Direct Debit<br/> COR1: SEPA-Basislastschrift COR1 (deprecated use CORE instead)<br/> B2B: SEPA Business"
+                  },
+                  "mandate_date_of_signature": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32"
+                  },
+                  "mandate_id": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "reference": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "remittance_information": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "requested_at": {
+                    "type": "string",
+                    "native_type": "string:date",
+                    "arrow_type": "Date32",
+                    "description": "Booking date"
+                  },
+                  "sequence_type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8",
+                    "description": "FRST: Erstlastschrift<br/> RCUR: Folgelastschrift<br/> OOFF: Einmallastschrift<br/> FNAL: Letztmalige Lastschrift"
+                  },
+                  "updated_at": {
+                    "type": "string",
+                    "native_type": "string:datetime",
+                    "arrow_type": "Timestamp(MICROSECOND, UTC)"
+                  },
+                  "type": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

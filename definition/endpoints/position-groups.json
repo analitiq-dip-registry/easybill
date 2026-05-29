@@ -1,0 +1,115 @@
+{
+  "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
+  "endpoint_id": "position-groups",
+  "display_name": "Position groups",
+  "description": "Position groups",
+  "operations": {
+    "read": {
+      "request": {
+        "method": "GET",
+        "path": "/position-groups",
+        "transport_ref": "api"
+      },
+      "params": {
+        "page": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1
+          },
+          "controlled_by": "pagination",
+          "description": "1-based page number (pagination cursor)."
+        },
+        "limit": {
+          "in": "query",
+          "type": "integer",
+          "required": false,
+          "default": {
+            "literal": 1000
+          },
+          "controlled_by": "pagination",
+          "description": "Page size. Default 100, max 1000."
+        }
+      },
+      "pagination": {
+        "type": "page",
+        "page": {
+          "param": "page",
+          "initial": 1,
+          "increment_by": 1
+        },
+        "limit": {
+          "param": "limit",
+          "default": 1000,
+          "max": 1000
+        },
+        "stop_when": {
+          "empty": {
+            "ref": "response.body.items"
+          }
+        }
+      },
+      "response": {
+        "records": {
+          "ref": "response.body.items"
+        },
+        "schema": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "integer"
+            },
+            "pages": {
+              "type": "integer"
+            },
+            "limit": {
+              "type": "integer"
+            },
+            "total": {
+              "type": "integer"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "description": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "login_id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  },
+                  "name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "number": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "display_name": {
+                    "type": "string",
+                    "native_type": "string",
+                    "arrow_type": "Utf8"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "native_type": "integer:int64",
+                    "arrow_type": "Int64"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
