@@ -1,5 +1,9 @@
 # EasyBill
 
+[![Status: unverified](https://img.shields.io/badge/status-unverified-orange)](https://github.com/analitiq-dip-registry)
+[![Latest release](https://img.shields.io/github/v/release/analitiq-dip-registry/easybill)](https://github.com/analitiq-dip-registry/easybill/releases)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue)](LICENSE)
+
 Read invoicing and accounting data from [easybill](https://www.easybill.de) — documents (invoices, offers, credit notes), customers, positions, payments, projects and more — via the easybill REST API.
 
 ## What is this?
