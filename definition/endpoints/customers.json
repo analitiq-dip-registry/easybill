@@ -8,7 +8,45 @@
       "request": {
         "method": "GET",
         "path": "/customers",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "group_id": {
+            "from_param": "group_id"
+          },
+          "additional_group_id": {
+            "from_param": "additional_group_id"
+          },
+          "number": {
+            "from_param": "number"
+          },
+          "country": {
+            "from_param": "country"
+          },
+          "zip_code": {
+            "from_param": "zip_code"
+          },
+          "emails": {
+            "from_param": "emails"
+          },
+          "first_name": {
+            "from_param": "first_name"
+          },
+          "last_name": {
+            "from_param": "last_name"
+          },
+          "company_name": {
+            "from_param": "company_name"
+          },
+          "created_at": {
+            "from_param": "created_at"
+          }
+        }
       },
       "params": {
         "page": {

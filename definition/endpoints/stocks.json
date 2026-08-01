@@ -8,7 +8,21 @@
       "request": {
         "method": "GET",
         "path": "/stocks",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "position_id": {
+            "from_param": "position_id"
+          },
+          "document_id": {
+            "from_param": "document_id"
+          }
+        }
       },
       "params": {
         "page": {

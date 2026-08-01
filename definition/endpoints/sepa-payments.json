@@ -8,7 +8,18 @@
       "request": {
         "method": "GET",
         "path": "/sepa-payments",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "document_id": {
+            "from_param": "document_id"
+          }
+        }
       },
       "params": {
         "page": {

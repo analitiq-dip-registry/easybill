@@ -1,14 +1,25 @@
 {
   "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
-  "endpoint_id": "discounts-position",
-  "display_name": "Position discounts",
-  "description": "Position discounts",
+  "endpoint_id": "discounts__position-group",
+  "display_name": "Position-group discounts",
+  "description": "Position-group discounts",
   "operations": {
     "read": {
       "request": {
         "method": "GET",
-        "path": "/discounts/position",
-        "transport_ref": "api"
+        "path": "/discounts/position-group",
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "customer_id": {
+            "from_param": "customer_id"
+          }
+        }
       },
       "params": {
         "page": {
@@ -84,7 +95,7 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "position_id": {
+                  "position_group_id": {
                     "type": "integer",
                     "native_type": "integer:int64",
                     "arrow_type": "Int64"
