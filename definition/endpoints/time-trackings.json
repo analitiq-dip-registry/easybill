@@ -8,7 +8,27 @@
       "request": {
         "method": "GET",
         "path": "/time-trackings",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "login_id": {
+            "from_param": "login_id"
+          },
+          "project_id": {
+            "from_param": "project_id"
+          },
+          "date_from_at": {
+            "from_param": "date_from_at"
+          },
+          "date_thru_at": {
+            "from_param": "date_thru_at"
+          }
+        }
       },
       "params": {
         "page": {

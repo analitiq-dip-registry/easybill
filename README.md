@@ -63,8 +63,8 @@ All endpoints are read-only (`GET`) collections and are paginated (page-number s
 | `projects` | GET | Projects |
 | `document-payments` | GET | Payments recorded against documents |
 | `attachments` | GET | File attachments |
-| `discounts-position` | GET | Position discounts |
-| `discounts-position-group` | GET | Position-group discounts |
+| `discounts__position` | GET | Position discounts |
+| `discounts__position-group` | GET | Position-group discounts |
 | `sepa-payments` | GET | SEPA direct-debit payments |
 | `serial-numbers` | GET | Serial numbers |
 | `stocks` | GET | Stock entries (per-position stock movements) |

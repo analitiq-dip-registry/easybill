@@ -8,7 +8,24 @@
       "request": {
         "method": "GET",
         "path": "/document-payments",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "document_id": {
+            "from_param": "document_id"
+          },
+          "payment_at": {
+            "from_param": "payment_at"
+          },
+          "reference": {
+            "from_param": "reference"
+          }
+        }
       },
       "params": {
         "page": {

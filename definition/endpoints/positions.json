@@ -8,7 +8,21 @@
       "request": {
         "method": "GET",
         "path": "/positions",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "type": {
+            "from_param": "type"
+          },
+          "number": {
+            "from_param": "number"
+          }
+        }
       },
       "params": {
         "page": {

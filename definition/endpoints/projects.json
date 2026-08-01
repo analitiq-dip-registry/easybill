@@ -8,7 +8,21 @@
       "request": {
         "method": "GET",
         "path": "/projects",
-        "transport_ref": "api"
+        "transport_ref": "api",
+        "query": {
+          "page": {
+            "from_param": "page"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "customer_id": {
+            "from_param": "customer_id"
+          },
+          "status": {
+            "from_param": "status"
+          }
+        }
       },
       "params": {
         "page": {
