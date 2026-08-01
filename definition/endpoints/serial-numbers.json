@@ -115,7 +115,7 @@
                   },
                   "position_id": {
                     "type": "integer",
-                    "native_type": "integer:int6",
+                    "native_type": "integer:int64",
                     "arrow_type": "Int64"
                   },
                   "document_id": {
