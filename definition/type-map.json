@@ -5,7 +5,6 @@
   { "match": "exact", "native": "string:datetime", "canonical": "Timestamp(MICROSECOND, UTC)" },
   { "match": "exact", "native": "integer", "canonical": "Int64" },
   { "match": "exact", "native": "integer:int64", "canonical": "Int64" },
-  { "match": "exact", "native": "integer:int6", "canonical": "Int64" },
   { "match": "exact", "native": "integer:int32", "canonical": "Int32" },
   { "match": "exact", "native": "number:float", "canonical": "Float64" },
   { "match": "exact", "native": "boolean", "canonical": "Boolean" },
