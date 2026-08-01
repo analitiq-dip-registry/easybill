@@ -12,7 +12,7 @@
     "billing"
   ],
   "documentation_url": "https://api.easybill.de/rest/v1/",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "default_transport": "api",
   "transports": {
     "api": {
