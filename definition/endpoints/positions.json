@@ -24,6 +24,18 @@
           }
         }
       },
+      "filters": {
+        "type": {
+          "eq": {
+            "from_param": "type"
+          }
+        },
+        "number": {
+          "eq": {
+            "from_param": "number"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -49,20 +61,12 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter positions by type."
         },
         "number": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter positions by number. You can add multiple numbers separate by comma like "
         }
       },
@@ -176,67 +180,67 @@
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price2": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 2 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 2 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price3": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 3 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 3 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price4": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 4 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 4 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price5": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 5 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 5 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price6": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 6 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 6 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price7": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 7 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 7 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price8": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 8 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 8 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price9": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 9 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 9 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "sale_price10": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price for customers of group 10 in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price for customers of group 10 in cents (e.g. \"150\" = 1.50€)"
                   },
                   "cost_price": {
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Price in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Price in cents (e.g. \"150\" = 1.50€)"
                   },
                   "export_cost1": {
                     "type": "string",

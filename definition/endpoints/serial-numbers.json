@@ -27,6 +27,18 @@
           }
         }
       },
+      "filters": {
+        "position_id": {
+          "eq": {
+            "from_param": "position_id"
+          }
+        },
+        "document_id": {
+          "eq": {
+            "from_param": "document_id"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -52,29 +64,18 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter serial numbers by position id."
         },
         "document_id": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter serial numbers by document id."
         },
         "in_use": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq"
-          ],
           "description": "Filter serial numbers by usage."
         }
       },

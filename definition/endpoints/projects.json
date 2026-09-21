@@ -24,6 +24,18 @@
           }
         }
       },
+      "filters": {
+        "customer_id": {
+          "eq": {
+            "from_param": "customer_id"
+          }
+        },
+        "status": {
+          "eq": {
+            "from_param": "status"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -49,20 +61,12 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter projects by customer_id. You can add multiple ids separate by comma like "
         },
         "status": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter projects by status."
         }
       },
@@ -112,7 +116,7 @@
                     "type": "integer",
                     "native_type": "integer",
                     "arrow_type": "Int64",
-                    "description": "Project budget in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Project budget in cents (e.g. \"150\" = 1.50€)"
                   },
                   "budget_time": {
                     "type": "integer",
@@ -129,7 +133,7 @@
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Hourly rate in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Hourly rate in cents (e.g. \"150\" = 1.50€)"
                   },
                   "id": {
                     "type": "integer",

@@ -30,6 +30,28 @@
           }
         }
       },
+      "filters": {
+        "login_id": {
+          "eq": {
+            "from_param": "login_id"
+          }
+        },
+        "project_id": {
+          "eq": {
+            "from_param": "project_id"
+          }
+        },
+        "date_from_at": {
+          "eq": {
+            "from_param": "date_from_at"
+          }
+        },
+        "date_thru_at": {
+          "eq": {
+            "from_param": "date_thru_at"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -55,42 +77,24 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter time-tracking by login_id. You can add multiple ids separate by comma lik"
         },
         "project_id": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter time-tracking by project_id. You can add multiple ids separate by comma l"
         },
         "date_from_at": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "gte",
-            "lte"
-          ],
           "description": "Filter time-tracking by date_from_at. You can filter one date with date_from_at="
         },
         "date_thru_at": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "gte",
-            "lte"
-          ],
           "description": "Filter time-tracking by date_thru_at. You can filter one date with date_thru_at="
         }
       },
@@ -165,7 +169,7 @@
                     "type": "number",
                     "native_type": "number:float",
                     "arrow_type": "Float64",
-                    "description": "Hourly rate in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Hourly rate in cents (e.g. \"150\" = 1.50€)"
                   },
                   "id": {
                     "type": "integer",

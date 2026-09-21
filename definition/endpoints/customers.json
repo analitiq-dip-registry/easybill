@@ -48,6 +48,53 @@
           }
         }
       },
+      "filters": {
+        "group_id": {
+          "eq": {
+            "from_param": "group_id"
+          }
+        },
+        "number": {
+          "eq": {
+            "from_param": "number"
+          }
+        },
+        "country": {
+          "eq": {
+            "from_param": "country"
+          }
+        },
+        "zip_code": {
+          "eq": {
+            "from_param": "zip_code"
+          }
+        },
+        "emails": {
+          "eq": {
+            "from_param": "emails"
+          }
+        },
+        "first_name": {
+          "eq": {
+            "from_param": "first_name"
+          }
+        },
+        "last_name": {
+          "eq": {
+            "from_param": "last_name"
+          }
+        },
+        "company_name": {
+          "eq": {
+            "from_param": "company_name"
+          }
+        },
+        "created_at": {
+          "eq": {
+            "from_param": "created_at"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -73,101 +120,60 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by group_id. You can add multiple group ids separate by comma l"
         },
         "additional_group_id": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by additional_group_id. You can add multiple group ids separate"
         },
         "number": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by number. You can add multiple numbers separate by comma like "
         },
         "country": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by country. You can add multiple countries separate by comma li"
         },
         "zip_code": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by zip_code. You can add multiple zip codes separate by comma l"
         },
         "emails": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by emails. You can add multiple emails separate by comma like m"
         },
         "first_name": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by first_name. You can add multiple names separate by comma lik"
         },
         "last_name": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by first_name. You can add multiple names separate by comma lik"
         },
         "company_name": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter customers by first_name. You can add multiple names separate by comma lik"
         },
         "created_at": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "gte",
-            "lte"
-          ],
           "description": "Filter customers by created_at. You can filter one date with created_at=2014-12-"
         }
       },
@@ -468,7 +474,7 @@
                     "type": "integer",
                     "native_type": "integer",
                     "arrow_type": "Int64",
-                    "description": "1 = Stets p\u00fcnktliche Zahlung, 2 = \u00fcberwiegend p\u00fcnktliche Zahlung, 3 = \u00fcberwiegend versp\u00e4tete Zahlung, 5 = Grunds\u00e4tzlich "
+                    "description": "1 = Stets pünktliche Zahlung, 2 = überwiegend pünktliche Zahlung, 3 = überwiegend verspätete Zahlung, 5 = Grundsätzlich "
                   },
                   "personal": {
                     "type": "boolean",
