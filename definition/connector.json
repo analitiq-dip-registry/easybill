@@ -20,7 +20,6 @@
       "base_url": "https://api.easybill.de/rest/v1",
       "headers": {
         "Accept": "application/json",
-        "Content-Type": "application/json",
         "Authorization": {
           "template": "Bearer ${secrets.api_key}"
         }
