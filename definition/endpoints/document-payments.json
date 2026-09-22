@@ -27,6 +27,23 @@
           }
         }
       },
+      "filters": {
+        "document_id": {
+          "eq": {
+            "from_param": "document_id"
+          }
+        },
+        "payment_at": {
+          "eq": {
+            "from_param": "payment_at"
+          }
+        },
+        "reference": {
+          "eq": {
+            "from_param": "reference"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -52,31 +69,18 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter payments by document_id. You can add multiple ids separate by comma like "
         },
         "payment_at": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "gte",
-            "lte"
-          ],
           "description": "Filter payments by payment_at. You can filter one date with payment_at=2014-12-1"
         },
         "reference": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter payments by reference. You can add multiple references separate by comma "
         }
       },

@@ -46,10 +46,6 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter discounts by customer_id. You can add multiple customer_ids separate by c"
         }
       },

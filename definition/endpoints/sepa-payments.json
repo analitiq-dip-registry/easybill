@@ -21,6 +21,13 @@
           }
         }
       },
+      "filters": {
+        "document_id": {
+          "eq": {
+            "from_param": "document_id"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -46,10 +53,6 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter SEPA payment by document_id. You can add multiple ids separate by comma l"
         }
       },
@@ -99,7 +102,7 @@
                     "type": "integer",
                     "native_type": "integer",
                     "arrow_type": "Int64",
-                    "description": "Amount in cents (e.g. \"150\" = 1.50\u20ac)"
+                    "description": "Amount in cents (e.g. \"150\" = 1.50€)"
                   },
                   "created_at": {
                     "type": "string",

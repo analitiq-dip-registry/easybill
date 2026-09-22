@@ -24,6 +24,18 @@
           }
         }
       },
+      "filters": {
+        "position_id": {
+          "eq": {
+            "from_param": "position_id"
+          }
+        },
+        "document_id": {
+          "eq": {
+            "from_param": "document_id"
+          }
+        }
+      },
       "params": {
         "page": {
           "in": "query",
@@ -49,20 +61,12 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter stock entries by position id."
         },
         "document_id": {
           "in": "query",
           "type": "string",
           "required": false,
-          "operators": [
-            "eq",
-            "in"
-          ],
           "description": "Filter stock entries by document id."
         }
       },
